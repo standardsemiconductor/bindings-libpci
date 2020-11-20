@@ -36,7 +36,7 @@ module Bindings.Libpci where
 #field method , CUInt
 #field writeable , CInt
 #field buscentric , CInt
-#field id_file_name , Ptr CChar
+#field id_file_name , CString
 #field free_id_name , CInt
 #field numeric_ids , CInt
 #field id_lookup_mode , CUInt
@@ -57,20 +57,20 @@ module Bindings.Libpci where
 #ccall pci_free_dev , Ptr <pci_dev> -> IO ()
 
 -- * Names of access methods
-#ccall pci_lookup_method , Ptr CChar -> IO CInt
-#ccall pci_get_method_name , CInt -> IO (Ptr CChar)
+#ccall pci_lookup_method , CString -> IO CInt
+#ccall pci_get_method_name , CInt -> IO CString
 
 -- * Named parameters
 #starttype struct pci_param
 #field next , Ptr <pci_param>
-#field param , Ptr CChar
-#field value , Ptr CChar
+#field param , CString
+#field value , CString
 #field value_malloced , CInt
-#field help , Ptr CChar
+#field help , CString
 #stoptype
 
-#ccall pci_get_param , Ptr <pci_access> -> Ptr CChar -> IO (Ptr CChar)
-#ccall pci_set_param , Ptr <pci_access> -> Ptr CChar -> Ptr CChar -> IO CInt
+#ccall pci_get_param , Ptr <pci_access> -> CString -> IO CString
+#ccall pci_set_param , Ptr <pci_access> -> CString -> CString -> IO CInt
 #ccall pci_walk_params , Ptr <pci_access> -> Ptr <pci_param> -> IO (Ptr <pci_param>)
 
 -- * Devices
@@ -90,9 +90,9 @@ module Bindings.Libpci where
 #field rom_base_addr , <pciaddr_t>
 #field rom_size , <pciaddr_t>
 #field first_cap , Ptr <pci_cap>
-#field phy_slot , Ptr CChar
-#field module_alias , Ptr CChar
-#field label , Ptr CChar
+#field phy_slot , CString
+#field module_alias , CString
+#field label , CString
 #field numa_node , CInt
 #array_field flags , <pciaddr_t>
 #field rom_flags , <pciaddr_t>
@@ -116,7 +116,7 @@ module Bindings.Libpci where
 
 -- PCI Properties
 #ccall pci_fill_info , Ptr <pci_dev> -> CInt -> IO CInt
-#ccall pci_get_string_property , Ptr <pci_dev> -> <u32> -> IO (Ptr CChar)
+#ccall pci_get_string_property , Ptr <pci_dev> -> <u32> -> IO CString
 
 #num PCI_FILL_IDENT
 #num PCI_FILL_IRQ
@@ -164,8 +164,8 @@ module Bindings.Libpci where
 #stoptype
 
 #ccall pci_filter_init , Ptr <pci_access> -> Ptr <pci_filter> -> IO ()
-#ccall pci_filter_parse_slot , Ptr <pci_filter> -> Ptr CChar -> IO (Ptr CChar)
-#ccall pci_filter_parse_id , Ptr <pci_filter> -> Ptr CChar -> IO (Ptr CChar)
+#ccall pci_filter_parse_slot , Ptr <pci_filter> -> CString -> IO CString
+#ccall pci_filter_parse_id , Ptr <pci_filter> -> CString -> IO CString
 #ccall pci_filter_match , Ptr <pci_filter> -> Ptr <pci_dev> -> IO CInt
 
 -- Name Lookup
@@ -174,7 +174,7 @@ module Bindings.Libpci where
 -- #ccall pci_lookup_name , Ptr <pci_access> -> Ptr CChar -> CInt -> CInt -> IO (Ptr CChar)
 #ccall pci_load_name_list , Ptr <pci_access> -> IO CInt
 #ccall pci_free_name_list , Ptr <pci_access> -> IO ()
-#ccall pci_set_name_list_path , Ptr <pci_access> -> Ptr CChar -> CInt -> IO ()
+#ccall pci_set_name_list_path , Ptr <pci_access> -> CString -> CInt -> IO ()
 #ccall pci_id_cache_flush , Ptr <pci_access> -> IO ()
 
 #integral_t enum pci_lookup_mode
