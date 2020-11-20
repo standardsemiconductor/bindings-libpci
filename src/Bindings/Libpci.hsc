@@ -1,5 +1,6 @@
 #include <bindings.dsl.h>
 #include <pci/pci.h>
+#include <pci/types.h>
   
 module Bindings.Libpci where
 #strict_import
@@ -11,10 +12,11 @@ module Bindings.Libpci where
 #integral_t pciaddr_t
 
 -- PCI Access Structure
---OPAQUE???
--- #starttype struct pci_methods
--- #stoptype
 #opaque_t pci_methods
+#opaque_t id_entry
+#opaque_t id_bucket
+#opaque_t udev
+#opaque_t udev_hwdb
 
 #integral_t enum pci_access_type
 #num PCI_ACCESS_AUTO 
@@ -41,9 +43,29 @@ module Bindings.Libpci where
 #field numeric_ids , CInt
 #field id_lookup_mode , CUInt
 #field debugging , CInt
--- IGNORING lines 64-67 Functions you can override
+
+-- Functions you can override
+#field error , FunPtr ( CString -> IO () )
+#field warning , FunPtr ( CString -> IO () )
+#field debug , FunPtr ( CString -> IO () )
+
 #field devices , Ptr <pci_dev>
 
+-- Fields used internally
+#field methods , Ptr <pci_methods>
+#field params , Ptr <pci_param>
+#field id_hash , Ptr ( Ptr <id_entry> )
+#field current_id_bucket , Ptr <id_bucket>
+#field id_load_failed , CInt
+#field id_cache_status , CInt
+#field id_udev , Ptr <udev>
+#field id_udev_hwdb , Ptr <udev_hwdb>
+#field fd , CInt
+#field fd_rw , CInt
+#field fd_pos , CInt
+#field fd_vpd , CInt
+#field cached_dev , Ptr <pci_dev>
+  
 #stoptype
 
 -- * Initialize PCI access
@@ -73,6 +95,8 @@ module Bindings.Libpci where
 #ccall pci_set_param , Ptr <pci_access> -> CString -> CString -> IO CInt
 #ccall pci_walk_params , Ptr <pci_access> -> Ptr <pci_param> -> IO (Ptr <pci_param>)
 
+#opaque_t pci_property
+
 -- * Devices
 #starttype struct pci_dev
 #field next , Ptr <pci_dev>
@@ -97,6 +121,16 @@ module Bindings.Libpci where
 #array_field flags , <pciaddr_t>
 #field rom_flags , <pciaddr_t>
 #field domain , CInt
+
+-- Fields used internally
+#field access , Ptr <pci_access>
+#field methods , Ptr <pci_methods>
+#field cache , Ptr <u8>
+#field cache_len , CInt
+#field hdrtype , CInt
+#field aux , Ptr ()
+#field properties , Ptr <pci_property>
+#field last_cap , Ptr <pci_cap>
 
 #stoptype
 
