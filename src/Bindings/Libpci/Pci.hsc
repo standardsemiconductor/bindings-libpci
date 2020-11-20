@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
 #include <bindings.dsl.h>
-#include "/usr/include/x86_64-linux-gnu/pci/pci.h"
+#include <pci/pci.h>
 module Bindings.Libpci.Pci where
 import Foreign.Ptr
 #strict_import
@@ -200,6 +200,24 @@ import Bindings.Libpci.Types
 #ccall pci_write_block , Ptr <struct pci_dev> -> CInt -> Ptr CUChar -> CInt -> IO CInt
 #ccall pci_fill_info , Ptr <struct pci_dev> -> CInt -> IO CInt
 #ccall pci_get_string_property , Ptr <struct pci_dev> -> CUInt -> IO CString
+
+#num PCI_FILL_IDENT
+#num PCI_FILL_IRQ
+#num PCI_FILL_BASES
+#num PCI_FILL_ROM_BASE
+#num PCI_FILL_SIZES
+#num PCI_FILL_CLASS
+#num PCI_FILL_CAPS
+#num PCI_FILL_EXT_CAPS
+#num PCI_FILL_PHYS_SLOT
+#num PCI_FILL_MODULE_ALIAS
+#num PCI_FILL_LABEL
+#num PCI_FILL_NUMA_NODE
+#num PCI_FILL_IO_FLAGS
+#num PCI_FILL_DT_NODE
+-- #num PCI_FILL_IOMMU_GROUP
+#num PCI_FILL_RESCAN
+
 #ccall pci_setup_cache , Ptr <struct pci_dev> -> Ptr CUChar -> CInt -> IO ()
 {- struct pci_cap {
     struct pci_cap * next; u16 id; u16 type; unsigned int addr;

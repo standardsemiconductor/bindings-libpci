@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
 #include <bindings.dsl.h>
-#include "/usr/include/x86_64-linux-gnu/pci/types.h"
+#include <pci/types.h>
 module Bindings.Libpci.Types where
 import Foreign.Ptr
 #strict_import

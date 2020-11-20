@@ -32,7 +32,8 @@ library
           bindings-DSL ^>=1.0.24
         exposed-modules:
           Bindings.Libpci.Pci,
-          Bindings.Libpci.Types
+          Bindings.Libpci.Types,
+          Bindings.Libpci.Header
         default-language: Haskell2010
         if os(windows)
           includes: pci.h
