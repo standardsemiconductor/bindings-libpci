@@ -250,7 +250,7 @@ import Bindings.Libpci.Types
 #ccall pci_filter_parse_id , Ptr <struct pci_filter> -> CString -> IO CString
 #ccall pci_filter_match , Ptr <struct pci_filter> -> Ptr <struct pci_dev> -> IO CInt
 
-#ccall pci_lookup_name , Ptr <struct pci_access> -> CString -> CInt -> CInt -> CUShort -> CUShort -> IO CString
+#ccall pci_lookup_name , Ptr <struct pci_access> -> CString -> CInt -> CInt -> CInt -> CInt -> CInt -> CInt -> IO CString
 
 #ccall pci_load_name_list , Ptr <struct pci_access> -> IO CInt
 #ccall pci_free_name_list , Ptr <struct pci_access> -> IO ()
