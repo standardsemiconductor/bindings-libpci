@@ -28,7 +28,7 @@ library
         hs-source-dirs: src
         default-extensions: ForeignFunctionInterface
         build-depends:
-          base >= 4.14 && < 4.15
+          base >= 4.14 && < 4.15,
           bindings-DSL >= 1.0.24 && < 1.1
         exposed-modules:
           Bindings.Libpci.Pci,
