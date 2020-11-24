@@ -228,6 +228,10 @@ import Bindings.Libpci.Types
 #field type , CUShort
 #field addr , CUInt
 #stoptype
+
+#num PCI_CAP_NORMAL
+#num PCI_CAP_EXTENDED
+
 #ccall pci_find_cap , Ptr <struct pci_dev> -> CUInt -> CUInt -> IO (Ptr <struct pci_cap>)
 #ccall pci_find_cap_nr , Ptr <struct pci_dev> -> CUInt -> CUInt -> Ptr CUInt -> IO (Ptr <struct pci_cap>)
 {- struct pci_filter {
