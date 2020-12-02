@@ -39,4 +39,4 @@ library
           includes: pci.h
           extra-libraries: libpci
         else
-          pkgconfig-depends: libpci >= 3.6.4
+          pkgconfig-depends: libpci >= 3.5.2
