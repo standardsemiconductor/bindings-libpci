@@ -46,8 +46,8 @@ import Bindings.Libpci.Types
 #num PCI_ACCESS_OBSD_DEVICE
 #num PCI_ACCESS_DUMP
 #num PCI_ACCESS_DARWIN
-#num PCI_ACCESS_SYLIXOS_DEVICE
-#num PCI_ACCESS_HURD
+-- #num PCI_ACCESS_SYLIXOS_DEVICE
+-- #num PCI_ACCESS_HURD
 #num PCI_ACCESS_MAX
 {- struct pci_access {
     unsigned int method;
@@ -214,7 +214,7 @@ import Bindings.Libpci.Types
 #num PCI_FILL_LABEL
 #num PCI_FILL_NUMA_NODE
 #num PCI_FILL_IO_FLAGS
-#num PCI_FILL_DT_NODE
+-- #num PCI_FILL_DT_NODE
 -- #num PCI_FILL_IOMMU_GROUP
 #num PCI_FILL_RESCAN
 
