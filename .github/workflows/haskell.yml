@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         ghc: ['8.8.3', '8.8.4', '8.10.1']
-        cabal: ['3.0.0.0']
+        cabal: ['3.0.0.0', '3.2.0.0']
         os: [ubuntu-18.04]
     name: Haskell GHC ${{ matrix.ghc }}
     steps:
@@ -39,7 +39,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt install libpci-dev
+        apt-get install libpci-dev
         cabal update
         cabal build --only-dependencies --enable-tests --enable-benchmarks
     - name: Build
