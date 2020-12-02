@@ -186,8 +186,8 @@ import Bindings.Libpci.Types
 #field cache_len , CInt
 #field hdrtype , CInt
 #field aux , Ptr ()
-#field properties , Ptr <struct pci_property>
-#field last_cap , Ptr <struct pci_cap>
+-- #field properties , Ptr <struct pci_property>
+-- #field last_cap , Ptr <struct pci_cap>
 #stoptype
 #ccall pci_read_byte , Ptr <struct pci_dev> -> CInt -> IO CUChar
 #ccall pci_read_word , Ptr <struct pci_dev> -> CInt -> IO CUShort
