@@ -1,3 +1,4 @@
+![Haskell CI](https://github.com/standardsemiconductor/bindings-libpci/workflows/Haskell%20CI/badge.svg?branch=main)
 # bindings-libpci
 Low level bindings to [libpci](https://github.com/pciutils/pciutils)
 See also the pciutils [homepage](https://mj.ucw.cz/sw/pciutils/).
