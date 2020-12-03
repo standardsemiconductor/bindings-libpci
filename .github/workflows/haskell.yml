@@ -33,7 +33,7 @@ jobs:
     - name: Install pciutils
       run: |
         make
-        make install-lib
+        sudo make install-lib
       working-directory: pciutils
 
     - uses: actions/setup-haskell@v1
