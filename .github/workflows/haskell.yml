@@ -32,8 +32,8 @@ jobs:
 
     - name: Install pciutils
       run: |
-        make SHARED=yes
-        sudo make install-lib SHARED=yes
+        make CFLAGS='-O2 -Wall -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -fPIC'
+        sudo make install-lib CFLAGS='-O2 -Wall -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -fPIC'
       working-directory: pciutils
 
     - uses: actions/setup-haskell@v1
