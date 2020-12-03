@@ -35,7 +35,6 @@ library
           Bindings.Libpci.Types,
           Bindings.Libpci.Header
         default-language: Haskell2010
-        ghc-options: -dynamic -fPIC
         if os(windows)
           includes: pci.h
           extra-libraries: libpci

@@ -56,8 +56,8 @@ jobs:
     - name: Install dependencies
       run: |
         cabal update
-        cabal build --only-dependencies --enable-tests --enable-benchmarks --enable-shared
+        cabal build --only-dependencies --enable-tests --enable-benchmarks --disable-shared
     - name: Build
-      run: cabal build --enable-tests --enable-benchmarks all --enable-shared
+      run: cabal build --enable-tests --enable-benchmarks all --disable-shared
     - name: Run tests
       run: cabal test all
