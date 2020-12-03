@@ -34,7 +34,7 @@ jobs:
       run: |
         make
         make install-lib
-      working-directory: $GITHUB_WORKSPACE/pciutils
+      working-directory: pciutils
 
     - uses: actions/setup-haskell@v1
       with:
