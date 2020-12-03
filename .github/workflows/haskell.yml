@@ -17,7 +17,7 @@ jobs:
         ghc: ['8.6.5', '8.8.4', '8.10.2']
         cabal: ['3.0.0.0', '3.2.0.0']
         os: [ubuntu-18.04, ubuntu-20.04]
-        pciutils: ['v3.5.2', 'v3.7.0']
+        pciutils: ['v3.5.2', 'v3.6.0', 'v3.6.4', 'v3.7.0']
     name: ${{ matrix.os }} GHC ${{ matrix.ghc }} Cabal ${{ matrix.cabal }} pciutils ${{ matrix.pciutils }}
     steps:
     - name: Checkout
@@ -29,6 +29,12 @@ jobs:
         repository: pciutils/pciutils
         ref: ${{ matrix.pciutils }}
         path: pciutils
+
+    - name: Install pciutils
+      run: |
+        make
+        make install-lib
+      working-directory: $GITHUB_WORKSPACE/pciutils
 
     - uses: actions/setup-haskell@v1
       with:
@@ -49,7 +55,6 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get install libpci-dev
         cabal update
         cabal build --only-dependencies --enable-tests --enable-benchmarks
     - name: Build
