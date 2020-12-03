@@ -26,7 +26,7 @@ jobs:
     - name: Checkout pciutils
       uses: actions/checkout@v2
       with
-        repository: pcitutils/pciutils
+        repository: pciutils/pciutils
         ref: ${{ matrix.pciutils }}
         path: pciutils
 
