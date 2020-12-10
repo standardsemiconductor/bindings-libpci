@@ -25,30 +25,37 @@ source-repository head
                   branch: main
 
 flag libpci-352
+     default: False
      description:
        libpci is 3.5.2 or later
 
 flag libpci-353
+     default: False
      description:
        libpci is 3.5.3 or later
        
 flag libpci-355
+     default: False
      description:
        libpci is 3.5.5 or later
                          
 flag libpci-360
+     default: False
      description:
-        libpci is 3.6.0 or later
+       libpci is 3.6.0 or later
 
 flag libpci-363
+     default: False
      description:
        libpci is 3.6.3 or later
 
 flag libpci-364
+     default: False
      description:
        libpci is 3.6.4 or later
        
 flag libpci-370
+     default: False
      description:
        libpci is 3.7.0 or later
                                  
