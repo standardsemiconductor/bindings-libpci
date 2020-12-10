@@ -26,6 +26,10 @@ jobs:
             flag: libpci-355
           - tag: v3.6.0
             flag: libpci-360
+          - tag: v3.6.1
+            flag: libpci-360
+          - tag: v3.6.2
+            flag: libpci-360
           - tag: v3.6.3
             flag: libpci-363
           - tag: v3.6.4
