@@ -24,9 +24,34 @@ source-repository head
                   location: git://github.com/standardsemiconductor/bindings-libpci.git
                   branch: main
 
+flag libpci-352
+     description:
+       libpci is 3.5.2 or later
+
+flag libpci-353
+     description:
+       libpci is 3.5.3 or later
+       
+flag libpci-355
+     description:
+       libpci is 3.5.5 or later
+                         
+flag libpci-360
+     description:
+        libpci is 3.6.0 or later
+
+flag libpci-363
+     description:
+       libpci is 3.6.3 or later
+
+flag libpci-370
+     description:
+       libpci is 3.7.0 or later
+                                 
 library
         hs-source-dirs: src
-        default-extensions: ForeignFunctionInterface
+        default-extensions: ForeignFunctionInterface,
+                            CPP
         build-depends:
           base >= 4.12 && < 4.15,
           bindings-DSL >= 1.0.24 && < 1.1
@@ -39,4 +64,21 @@ library
           includes: pci.h
           extra-libraries: libpci
         else
-          pkgconfig-depends: libpci >= 3.5.2
+          if flag(libpci-352)
+            pkgconfig-depends: libpci >= 3.5.2
+            cpp-options: -DMIN_VERSION_LIBPCI_3_5_2
+          if flag(libpci-353)
+            pkgconfig-depends: libpci >= 3.5.3
+            cpp-options: -DMIN_VERSION_LIBPCI_3_5_3            
+          if flag(libpci-355)
+            pkgconfig-depends: libpci >= 3.5.5
+            cpp-options: -DMIN_VERSION_LIBPCI_3_5_5
+          if flag(libpci-360)
+            pkgconfig-depends: libpci >= 3.6.0
+            cpp-options: -DMIN_VERSION_LIBPCI_3_6_0
+          if flag(libpci-363)
+            pkgconfig-depends: libpci >= 3.6.3
+            cpp-options: -DMIN_VERSION_LIBPCI_3_6_3
+          if flag(libpci-370)
+            pkgconfig-depends: libpci >= 3.7.0
+            cpp-options: -DMIN_VERSION_LIBPCI_3_7_0

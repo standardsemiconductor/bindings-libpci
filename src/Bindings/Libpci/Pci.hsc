@@ -46,8 +46,12 @@ import Bindings.Libpci.Types
 #num PCI_ACCESS_OBSD_DEVICE
 #num PCI_ACCESS_DUMP
 #num PCI_ACCESS_DARWIN
--- #num PCI_ACCESS_SYLIXOS_DEVICE
--- #num PCI_ACCESS_HURD
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_ACCESS_SYLIXOS_DEVICE
+#num PCI_ACCESS_HURD
+#endif
+
 #num PCI_ACCESS_MAX
 {- struct pci_access {
     unsigned int method;
@@ -103,6 +107,7 @@ import Bindings.Libpci.Types
 #field fd_vpd , CInt
 #field cached_dev , Ptr <struct pci_dev>
 #stoptype
+
 #ccall pci_alloc , IO (Ptr <struct pci_access>)
 #ccall pci_init , Ptr <struct pci_access> -> IO ()
 #ccall pci_cleanup , Ptr <struct pci_access> -> IO ()
@@ -125,6 +130,7 @@ import Bindings.Libpci.Types
 #field value_malloced , CInt
 #field help , CString
 #stoptype
+
 #ccall pci_get_param , Ptr <struct pci_access> -> CString -> IO CString
 #ccall pci_set_param , Ptr <struct pci_access> -> CString -> CString -> IO CInt
 #ccall pci_walk_params , Ptr <struct pci_access> -> Ptr <struct pci_param> -> IO (Ptr <struct pci_param>)
@@ -186,8 +192,14 @@ import Bindings.Libpci.Types
 #field cache_len , CInt
 #field hdrtype , CInt
 #field aux , Ptr ()
--- #field properties , Ptr <struct pci_property>
--- #field last_cap , Ptr <struct pci_cap>
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#field properties , Ptr <struct pci_property>
+#endif
+
+#ifdef MIN_VERSION_LIBPCI_3_6_3
+#field last_cap , Ptr <struct pci_cap>
+#endif  
 #stoptype
 #ccall pci_read_byte , Ptr <struct pci_dev> -> CInt -> IO CUChar
 #ccall pci_read_word , Ptr <struct pci_dev> -> CInt -> IO CUShort
@@ -214,8 +226,15 @@ import Bindings.Libpci.Types
 #num PCI_FILL_LABEL
 #num PCI_FILL_NUMA_NODE
 #num PCI_FILL_IO_FLAGS
--- #num PCI_FILL_DT_NODE
--- #num PCI_FILL_IOMMU_GROUP
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_FILL_DT_NODE
+#endif
+
+#ifdef MIN_VERSION_LIBPCI_3_7_0
+#num PCI_FILL_IOMMU_GROUP
+#endif
+
 #num PCI_FILL_RESCAN
 
 #ccall pci_setup_cache , Ptr <struct pci_dev> -> Ptr CUChar -> CInt -> IO ()

@@ -6,30 +6,73 @@ module Bindings.Libpci.Header where
 import Foreign.Ptr
 #strict_import
 
+-- Under PCI, each device has 256 bytes of configuration address space,
+-- of which the first 64 bytes are standardized as follows:
 
-
+-- | 0x00 16 bits
 #num PCI_VENDOR_ID
+
+-- | 0x02 16 bits
 #num PCI_DEVICE_ID
+
+-- | 0x04 16 bits
 #num PCI_COMMAND
+
+-- | 0x1 Enable response in I/O space
 #num PCI_COMMAND_IO
+
+-- | 0x2 Enable response in Memory space
 #num PCI_COMMAND_MEMORY
+
+-- | 0x4 Enable bus mastering
 #num PCI_COMMAND_MASTER
+
+-- | 0x8 Enable response to special cycles
 #num PCI_COMMAND_SPECIAL
+
+-- | 0x10 Use memory write and invalidate
 #num PCI_COMMAND_INVALIDATE
+
+-- | 0x20 Enable palette snooping
 #num PCI_COMMAND_VGA_PALETTE
+
+-- | 0x40 Enable parity checking
 #num PCI_COMMAND_PARITY
+
+-- | 0x80 Enable address/data stepping
 #num PCI_COMMAND_WAIT
+
+-- | 0x100 Enable SERR
 #num PCI_COMMAND_SERR
+
+-- | 0x200 Enable back-to-back writes
 #num PCI_COMMAND_FAST_BACK
+
+-- | 0x400 PCIE: Disable INTx interrupts
 #num PCI_COMMAND_DISABLE_INTx
 
+
+-- | 0x06 16 bits
 #num PCI_STATUS
+
+-- | 0x08 PCIE: INTx interrupt pending
 #num PCI_STATUS_INTx
+
+-- | 0x10 Support Capability List
 #num PCI_STATUS_CAP_LIST
+
+-- | 0x20 Support 66 Mhz PCI 2.1 bus
 #num PCI_STATUS_66MHZ
+
+-- | 0x40 Support User Definable Features [obsolete]
 #num PCI_STATUS_UDF
+
+-- | 0x80 Accept fast-back to back
 #num PCI_STATUS_FAST_BACK
+
+-- | 0x100 Detected parity error
 #num PCI_STATUS_PARITY
+
 #num PCI_STATUS_DEVSEL_MASK
 #num PCI_STATUS_DEVSEL_FAST
 #num PCI_STATUS_DEVSEL_MEDIUM
@@ -120,7 +163,12 @@ import Foreign.Ptr
 #num PCI_BRIDGE_CTL_SERR
 #num PCI_BRIDGE_CTL_NO_ISA
 #num PCI_BRIDGE_CTL_VGA
--- #num PCI_BRIDGE_CTL_VGA_16BIT
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+-- | 0x10 VGA 16-bit decode
+#num PCI_BRIDGE_CTL_VGA_16BIT
+#endif
+
 #num PCI_BRIDGE_CTL_MASTER_ABORT
 #num PCI_BRIDGE_CTL_BUS_RESET
 #num PCI_BRIDGE_CTL_FAST_BACK
@@ -164,7 +212,11 @@ import Foreign.Ptr
 #num PCI_CB_LEGACY_MODE_BASE
 
 #num PCI_CAP_LIST_ID
--- #num PCI_CAP_ID_NULL
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_CAP_ID_NULL
+#endif
+
 #num PCI_CAP_ID_PM
 #num PCI_CAP_ID_AGP
 #num PCI_CAP_ID_VPD
@@ -190,8 +242,10 @@ import Foreign.Ptr
 #num PCI_CAP_SIZEOF
 
 
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_EXT_CAP_ID_NULL
+#endif
 
--- #num PCI_EXT_CAP_ID_NULL
 #num PCI_EXT_CAP_ID_AER
 #num PCI_EXT_CAP_ID_VC
 #num PCI_EXT_CAP_ID_DSN
@@ -201,41 +255,63 @@ import Foreign.Ptr
 #num PCI_EXT_CAP_ID_RCECOLL
 #num PCI_EXT_CAP_ID_MFVC
 #num PCI_EXT_CAP_ID_VC2
--- #num PCI_EXT_CAP_ID_RCRB
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_EXT_CAP_ID_RCRB
+#endif
+
 #num PCI_EXT_CAP_ID_VNDR
 #num PCI_EXT_CAP_ID_ACS
 #num PCI_EXT_CAP_ID_ARI
 #num PCI_EXT_CAP_ID_ATS
 #num PCI_EXT_CAP_ID_SRIOV
--- #num PCI_EXT_CAP_ID_MRIOV
--- #num PCI_EXT_CAP_ID_MCAST
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_EXT_CAP_ID_MRIOV
+#num PCI_EXT_CAP_ID_MCAST
+#endif
+
 #num PCI_EXT_CAP_ID_PRI
--- #num PCI_EXT_CAP_ID_REBAR
--- #num PCI_EXT_CAP_ID_DPA
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_EXT_CAP_ID_REBAR
+#num PCI_EXT_CAP_ID_DPA
+#endif
+
 #num PCI_EXT_CAP_ID_TPH
 #num PCI_EXT_CAP_ID_LTR
--- #num PCI_EXT_CAP_ID_SECPCI
--- #num PCI_EXT_CAP_ID_PMUX
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_EXT_CAP_ID_SECPCI
+#num PCI_EXT_CAP_ID_PMUX
+#endif
+
 #num PCI_EXT_CAP_ID_PASID
--- #num PCI_EXT_CAP_ID_LNR
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_EXT_CAP_ID_LNR
+#endif
+
 #num PCI_EXT_CAP_ID_DPC
 #num PCI_EXT_CAP_ID_L1PM
 #num PCI_EXT_CAP_ID_PTM
--- #num PCI_EXT_CAP_ID_M_PCIE
--- #num PCI_EXT_CAP_ID_FRS
--- #num PCI_EXT_CAP_ID_RTR
--- #num PCI_EXT_CAP_ID_DVSEC
--- #num PCI_EXT_CAP_ID_VF_REBAR
--- #num PCI_EXT_CAP_ID_DLNK
--- #num PCI_EXT_CAP_ID_16GT
--- #num PCI_EXT_CAP_ID_LMR
--- #num PCI_EXT_CAP_ID_HIER_ID
--- #num PCI_EXT_CAP_ID_NPEM
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
+#num PCI_EXT_CAP_ID_M_PCIE
+#num PCI_EXT_CAP_ID_FRS
+#num PCI_EXT_CAP_ID_RTR
+#num PCI_EXT_CAP_ID_DVSEC
+#num PCI_EXT_CAP_ID_VF_REBAR
+#num PCI_EXT_CAP_ID_DLNK
+#num PCI_EXT_CAP_ID_16GT
+#num PCI_EXT_CAP_ID_LMR
+#num PCI_EXT_CAP_ID_HIER_ID
+#num PCI_EXT_CAP_ID_NPEM
+#endif
 
 
 
-
-
+-- Power Management Registers
 #num PCI_PM_CAP_VER_MASK
 #num PCI_PM_CAP_PME_CLOCK
 #num PCI_PM_CAP_DSI
@@ -260,8 +336,7 @@ import Foreign.Ptr
 #num PCI_PM_DATA_REGISTER
 #num PCI_PM_SIZEOF
 
-
-
+-- AGP Registers
 #num PCI_AGP_VERSION
 #num PCI_AGP_RFU
 #num PCI_AGP_STATUS
@@ -293,22 +368,19 @@ import Foreign.Ptr
 #num PCI_AGP_COMMAND_RATE1
 #num PCI_AGP_SIZEOF
 
-
-
+-- Vital Product Data
 #num PCI_VPD_ADDR
 #num PCI_VPD_ADDR_MASK
 #num PCI_VPD_ADDR_F
 #num PCI_VPD_DATA
 
-
-
+-- Slot Identification
 #num PCI_SID_ESR
 #num PCI_SID_ESR_NSLOTS
 #num PCI_SID_ESR_FIC
 #num PCI_SID_CHASSIS_NR
 
-
-
+-- Message Signaled Interrupts registers
 #num PCI_MSI_FLAGS
 #num PCI_MSI_FLAGS_MASK_BIT
 #num PCI_MSI_FLAGS_64BIT
@@ -325,7 +397,7 @@ import Foreign.Ptr
 #num PCI_MSI_PENDING_32
 #num PCI_MSI_PENDING_64
 
-
+-- PCI-X
 #num PCI_PCIX_COMMAND
 #num PCI_PCIX_COMMAND_DPERE
 #num PCI_PCIX_COMMAND_ERO
@@ -852,30 +924,79 @@ import Foreign.Ptr
 #num PCI_EXP_RTSTA_PME_STATUS
 #num PCI_EXP_RTSTA_PME_PENDING
 #num PCI_EXP_DEVCAP2
--- #num PCI_EXP_DEVCAP2_NROPRPRP
+
+#ifdef MIN_VERSION_LIBPCI_3_6_3
+-- | 0x0400 No RO-enabled PR-PR Passing
+#num PCI_EXP_DEVCAP2_NROPRPRP
+#endif
+
 #num PCI_EXP_DEVCAP2_LTR
+
+#ifdef MIN_VERSION_LIBPCI_3_6_3
+-- | TPH Completer Supported
 #cinline PCI_EXP_DEVCAP2_TPH_COMP , CUInt -> CUInt
+
+-- | LN System CLS Supported
 #cinline PCI_EXP_DEVCAP2_LN_CLS , CUInt -> CUInt
--- #num PCI_EXP_DEVCAP2_10BIT_TAG_COMP
--- #num PCI_EXP_DEVCAP2_10BIT_TAG_REQ
+
+-- | 0x00010000 10 Bit Tag Completer
+#num PCI_EXP_DEVCAP2_10BIT_TAG_COMP
+
+-- | 0x00020000 10 Bit Tag Requester
+#num PCI_EXP_DEVCAP2_10BIT_TAG_REQ
+#endif
+
 #cinline PCI_EXP_DEVCAP2_OBFF , CUInt -> CUInt
--- #num PCI_EXP_DEVCAP2_EXTFMT
--- #num PCI_EXP_DEVCAP2_EE_TLP
+
+#ifdef MIN_VERSION_LIBPCI_3_6_3
+-- | 0x00100000 Extended Fmt Field Supported
+#num PCI_EXP_DEVCAP2_EXTFMT
+
+-- | 0x00200000 End-End TLP Prefix Supported
+#num PCI_EXP_DEVCAP2_EE_TLP
+
+-- | Max End-End TLP Prefixes
 #cinline PCI_EXP_DEVCAP2_MEE_TLP, CUInt -> CUInt
+
+-- | Emergency Power Reduction Supported
 #cinline PCI_EXP_DEVCAP2_EPR , CUInt -> CUInt
--- #num PCI_EXP_DEVCAP2_EPR_INIT
--- #num PCI_EXP_DEVCAP2_FRS
+
+-- | 0x04000000 Emergency Power Reduction Initialization Required
+#num PCI_EXP_DEVCAP2_EPR_INIT
+
+-- | 0x80000000 FRS supported
+#num PCI_EXP_DEVCAP2_FRS
+#endif
+
 #num PCI_EXP_DEVCTL2
 #cinline PCI_EXP_DEV2_TIMEOUT_RANGE , CUInt -> CUInt
 #cinline PCI_EXP_DEV2_TIMEOUT_VALUE , CUShort -> CUShort
 #num PCI_EXP_DEV2_TIMEOUT_DIS
--- #num PCI_EXP_DEV2_ATOMICOP_REQUESTER_EN
--- #num PCI_EXP_DEV2_ATOMICOP_EGRESS_BLOCK
+
+#ifdef MIN_VERSION_LIBPCI_3_5_3
+-- | 0x0040 AtomicOp RequesterEnable
+#num PCI_EXP_DEV2_ATOMICOP_REQUESTER_EN
+
+-- | 0x0080 AtomicOp Egress Blocking
+#num PCI_EXP_DEV2_ATOMICOP_EGRESS_BLOCK
+#endif
+
 #num PCI_EXP_DEV2_ARI
--- #num PCI_EXP_DEVCAP2_ATOMICOP_ROUTING
--- #num PCI_EXP_DEVCAP2_32BIT_ATOMICOP_COMP
--- #num PCI_EXP_DEVCAP2_64BIT_ATOMICOP_COMP
--- #num PCI_EXP_DEVCAP2_128BIT_CAS_COMP
+
+#ifdef MIN_VERSION_LIBPCI_3_5_3
+-- | 0x0040 AtomicOp Routing Supported
+#num PCI_EXP_DEVCAP2_ATOMICOP_ROUTING
+
+-- | 0x0080 32bit AtomicOp Completer Supported
+#num PCI_EXP_DEVCAP2_32BIT_ATOMICOP_COMP
+
+-- | 0x0100 64bit AtomicOp Completer Supported
+#num PCI_EXP_DEVCAP2_64BIT_ATOMICOP_COMP
+
+-- | 0x0200 128bit CAS Completer Supported
+#num PCI_EXP_DEVCAP2_128BIT_CAS_COMP
+#endif
+
 #num PCI_EXP_DEV2_LTR
 #cinline PCI_EXP_DEV2_OBFF , CUShort -> CUShort
 #num PCI_EXP_DEVSTA2
@@ -933,8 +1054,6 @@ import Foreign.Ptr
 #num PCI_EA_CAP_ENT_ENABLE
 
 
-
-
 #num PCI_ERR_UNCOR_STATUS
 #num PCI_ERR_UNC_TRAIN
 #num PCI_ERR_UNC_DLP
@@ -968,16 +1087,38 @@ import Foreign.Ptr
 #num PCI_ERR_CAP_ECRC_GENE
 #num PCI_ERR_CAP_ECRC_CHKC
 #num PCI_ERR_CAP_ECRC_CHKE
--- #num PCI_ERR_CAP_MULT_HDRC
--- #num PCI_ERR_CAP_MULT_HDRE
--- #num PCI_ERR_CAP_TLP_PFX
--- #num PCI_ERR_CAP_HDR_LOG
+
+#ifdef MIN_VERSION_LIBPCI_3_5_5
+-- | 0x00000200 Multiple Header Capable
+#num PCI_ERR_CAP_MULT_HDRC
+
+-- | 0x00000400 Multiple Header Enable
+#num PCI_ERR_CAP_MULT_HDRE
+
+-- | 0x00000800 TLP Prefix Log Present
+#num PCI_ERR_CAP_TLP_PFX
+
+-- | 0x00001000 Completion Timeout Prefix/Header Log Capable
+#num PCI_ERR_CAP_HDR_LOG
+#endif
+
 #num PCI_ERR_HEADER_LOG
 #num PCI_ERR_ROOT_COMMAND
--- #num PCI_ERR_ROOT_CMD_COR_EN
--- #num PCI_ERR_ROOT_CMD_NONFATAL_EN
--- #num PCI_ERR_ROOT_CMD_FATAL_EN
+
+#ifdef MIN_VERSION_LIBPCI_3_5_5
+-- | 0x00000001 Correctable Error Reporting Enable
+#num PCI_ERR_ROOT_CMD_COR_EN
+
+-- | 0x00000002 Non-Fatal Error Reporting Enable
+#num PCI_ERR_ROOT_CMD_NONFATAL_EN
+
+-- | 0x00000004 Fatal Error Reporting Enable
+#num PCI_ERR_ROOT_CMD_FATAL_EN
+#endif
+
 #num PCI_ERR_ROOT_STATUS
+
+#ifdef MIN_VERSION_LIBPCI_3_5_5
 -- #num PCI_ERR_ROOT_COR_RCV
 -- #num PCI_ERR_ROOT_MULTI_COR_RCV
 -- #num PCI_ERR_ROOT_UNCOR_RCV
@@ -986,6 +1127,8 @@ import Foreign.Ptr
 -- #num PCI_ERR_ROOT_NONFATAL_RCV
 -- #num PCI_ERR_ROOT_FATAL_RCV
 #cinline PCI_ERR_MSG_NUM , CUInt -> CUInt
+#endif
+
 #num PCI_ERR_ROOT_COR_SRC
 #num PCI_ERR_ROOT_SRC
 
@@ -1085,25 +1228,51 @@ import Foreign.Ptr
 #cinline PCI_IOV_MSA_BIR , CUInt -> CUInt
 #cinline PCI_IOV_MSA_OFFSET , CUInt -> CUInt
 
+#ifdef MIN_VERSION_LIBPCI_3_6_3
+-- | Multicast
 
--- #num PCI_MCAST_CAP
+-- | 0x04 Multicast Capability
+#num PCI_MCAST_CAP
+
 #cinline PCI_MCAST_CAP_MAX_GROUP , CUShort -> CUShort
 #cinline PCI_MCAST_CAP_WIN_SIZE , CUShort -> CUShort
--- #num PCI_MCAST_CAP_ECRC
--- #num PCI_MCAST_CTRL
+
+-- | 0x8000 ECRC Regeneration Supported
+#num PCI_MCAST_CAP_ECRC
+
+-- | 0x06 Multicast Control
+#num PCI_MCAST_CTRL
+
 #cinline PCI_MCAST_CTRL_NUM_GROUP , CUShort -> CUShort
--- #num PCI_MCAST_CTRL_ENABLE
--- #num PCI_MCAST_BAR
+
+-- | 0x8000 MC Enabled
+#num PCI_MCAST_CTRL_ENABLE
+
+-- | 0x08 Base Address
+#num PCI_MCAST_BAR
+
 #cinline PCI_MCAST_BAR_INDEX_POS , CULong -> CUInt
--- #num PCI_MCAST_BAR_MASK
--- #num PCI_MCAST_RCV
--- #num PCI_MCAST_BLOCK
--- #num PCI_MCAST_BLOCK_UNTRANS
--- #num PCI_MCAST_OVL_BAR
+
+#num PCI_MCAST_BAR_MASK
+
+-- | 0x10 Receive
+#num PCI_MCAST_RCV
+
+-- | 0x18 Block All
+#num PCI_MCAST_BLOCK
+
+-- | 0x20 Block Untranslated
+#num PCI_MCAST_BLOCK_UNTRANS
+
+-- | 0x28 Overlay BAR
+#num PCI_MCAST_OVL_BAR
+
 #cinline PCI_MCAST_OVL_SIZE , CULong -> CUInt
--- #num PCI_MCAST_OVL_MASK
 
+#num PCI_MCAST_OVL_MASK
+#endif
 
+-- | Page Request Interface
 #num PCI_PRI_CTRL
 #num PCI_PRI_CTRL_ENABLE
 #num PCI_PRI_CTRL_RESET
@@ -1133,16 +1302,36 @@ import Foreign.Ptr
 #num PCI_LTR_MAX_NOSNOOP
 
 
--- #num PCI_SEC_LNKCTL3
--- #num PCI_SEC_LNKCTL3_PERFORM_LINK_EQU
--- #num PCI_SEC_LNKCTL3_LNK_EQU_REQ_INTR_EN
+#ifdef MIN_VERSION_LIBPCI_3_6_3
+-- | Secondary PCI Express Extended Capability
+
+-- | 4 Link Control 3 register
+#num PCI_SEC_LNKCTL3
+
+-- | 0x01
+#num PCI_SEC_LNKCTL3_PERFORM_LINK_EQU
+
+-- | 0x02
+#num PCI_SEC_LNKCTL3_LNK_EQU_REQ_INTR_EN
+
 #cinline PCI_SEC_LNKCTL3_ENBL_LOWER_SKP_OS_GEN_VEC , CUInt -> CUInt
--- #num PCI_SEC_LANE_ERR
--- #num PCI_SEC_LANE_EQU_CTRL
 
+-- | 8 Lane Error status register
+#num PCI_SEC_LANE_ERR
 
+-- | 12 Lane Equalization Control register
+#num PCI_SEC_LANE_EQU_CTRL
+
+#endif
+
+-- | Process Address Space ID
+
+-- | 0x04 PASID feature register
 #num PCI_PASID_CAP
+
+-- | 0x02 Exec permissions Supported
 #num PCI_PASID_CAP_EXEC
+
 #num PCI_PASID_CAP_PRIV
 #cinline PCI_PASID_CAP_WIDTH , CUShort -> CUShort
 #num PCI_PASID_CTRL
@@ -1189,17 +1378,9 @@ import Foreign.Ptr
 #num PCI_L1PM_SUBSTAT_CTL2
 
 
-
-
-
-
-
-
-
 #cinline PCI_DEVFN , CUChar -> CUChar -> CUChar
 #cinline PCI_SLOT , CUChar -> CUChar
 #cinline PCI_FUNC , CUChar -> CUChar
-
 
 
 #num PCI_CLASS_NOT_DEFINED
@@ -1324,4 +1505,3 @@ import Foreign.Ptr
 #num PCI_VENDOR_ID_INTEL
 #num PCI_VENDOR_ID_COMPAQ
 #num PCI_IORESOURCE_PCI_EA_BEI
-
