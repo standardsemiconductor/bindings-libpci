@@ -20,14 +20,14 @@ jobs:
         pciutils:
           - tag: v3.5.2
             flag: libpci-352
-	  - tag: v3.5.3
-	    flag: libpci-353
-	  - tag: v3.5.5
-	    flag: libpci-355
+          - tag: v3.5.3
+            flag: libpci-353
+          - tag: v3.5.5
+            flag: libpci-355
           - tag: v3.6.0
             flag: libpci-360
-	  - tag: v3.6.3
-	    flag: libpci-363
+          - tag: v3.6.3
+            flag: libpci-363
           - tag: v3.7.0
             flag: libpci-370
     name: ${{ matrix.os }} GHC ${{ matrix.ghc }} Cabal ${{ matrix.cabal }} pciutils ${{ matrix.pciutils.tag }}
