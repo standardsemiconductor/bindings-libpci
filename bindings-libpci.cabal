@@ -44,6 +44,10 @@ flag libpci-363
      description:
        libpci is 3.6.3 or later
 
+flag libpci-364
+     description:
+       libpci is 3.6.4 or later
+       
 flag libpci-370
      description:
        libpci is 3.7.0 or later
@@ -79,6 +83,9 @@ library
           if flag(libpci-363)
             pkgconfig-depends: libpci >= 3.6.3
             cpp-options: -DMIN_VERSION_LIBPCI_3_6_3
+          if flag(libpci-364)
+            pkgconfig-depends: libpci >= 3.6.4
+            cpp-options: -DMIN_VERSION_LIBPCI_3_6_4
           if flag(libpci-370)
             pkgconfig-depends: libpci >= 3.7.0
             cpp-options: -DMIN_VERSION_LIBPCI_3_7_0

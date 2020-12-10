@@ -49,6 +49,9 @@ import Bindings.Libpci.Types
 
 #ifdef MIN_VERSION_LIBPCI_3_6_0
 #num PCI_ACCESS_SYLIXOS_DEVICE
+#endif
+
+#ifdef MIN_VERSION_LIBPCI_3_6_4
 #num PCI_ACCESS_HURD
 #endif
 

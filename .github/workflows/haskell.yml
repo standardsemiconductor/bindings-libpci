@@ -28,6 +28,8 @@ jobs:
             flag: libpci-360
           - tag: v3.6.3
             flag: libpci-363
+          - tag: v3.6.4
+            flag: libpci-364
           - tag: v3.7.0
             flag: libpci-370
     name: ${{ matrix.os }} GHC ${{ matrix.ghc }} Cabal ${{ matrix.cabal }} pciutils ${{ matrix.pciutils.tag }}
