@@ -17,7 +17,7 @@ jobs:
         ghc: ['8.6.5', '8.8.4', '8.10.2']
         cabal: ['3.0.0.0', '3.2.0.0']
         os: [ubuntu-18.04, ubuntu-20.04]
-	include:
+        include:
 	  - pciutils-tag: v3.5.2
 	    pciutils-flag: libpci-352
 	  - pciutils-tag: v3.6.0
