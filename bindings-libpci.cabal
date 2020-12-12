@@ -1,6 +1,6 @@
 cabal-version:      2.4
 name:               bindings-libpci
-version:            0.2.0.0
+version:            0.3.0.0
 synopsis:           Low level bindings to libpci
 description:        Low level bindings to libpci:
                     .
@@ -80,19 +80,40 @@ library
             cpp-options: -DMIN_VERSION_LIBPCI_3_5_2
           if flag(libpci-353)
             pkgconfig-depends: libpci >= 3.5.3
-            cpp-options: -DMIN_VERSION_LIBPCI_3_5_3            
+            cpp-options: -DMIN_VERSION_LIBPCI_3_5_3,
+                         -DMIN_VERSION_LIBPCI_3_5_2            
           if flag(libpci-355)
             pkgconfig-depends: libpci >= 3.5.5
-            cpp-options: -DMIN_VERSION_LIBPCI_3_5_5
+            cpp-options: -DMIN_VERSION_LIBPCI_3_5_5,
+                         -DMIN_VERSION_LIBPCI_3_5_3,
+                         -DMIN_VERSION_LIBPCI_3_5_2
           if flag(libpci-360)
             pkgconfig-depends: libpci >= 3.6.0
-            cpp-options: -DMIN_VERSION_LIBPCI_3_6_0
+            cpp-options: -DMIN_VERSION_LIBPCI_3_6_0,
+                         -DMIN_VERSION_LIBPCI_3_5_5,
+                         -DMIN_VERSION_LIBPCI_3_5_3,
+                         -DMIN_VERSION_LIBPCI_3_5_2
           if flag(libpci-363)
             pkgconfig-depends: libpci >= 3.6.3
-            cpp-options: -DMIN_VERSION_LIBPCI_3_6_3
+            cpp-options: -DMIN_VERSION_LIBPCI_3_6_3,
+                         -DMIN_VERSION_LIBPCI_3_6_0,
+                         -DMIN_VERSION_LIBPCI_3_5_5,
+                         -DMIN_VERSION_LIBPCI_3_5_3,
+                         -DMIN_VERSION_LIBPCI_3_5_2
           if flag(libpci-364)
             pkgconfig-depends: libpci >= 3.6.4
-            cpp-options: -DMIN_VERSION_LIBPCI_3_6_4
+            cpp-options: -DMIN_VERSION_LIBPCI_3_6_4,
+                         -DMIN_VERSION_LIBPCI_3_6_3,
+                         -DMIN_VERSION_LIBPCI_3_6_0,
+                         -DMIN_VERSION_LIBPCI_3_5_5,
+                         -DMIN_VERSION_LIBPCI_3_5_3,
+                         -DMIN_VERSION_LIBPCI_3_5_2
           if flag(libpci-370)
             pkgconfig-depends: libpci >= 3.7.0
-            cpp-options: -DMIN_VERSION_LIBPCI_3_7_0
+            cpp-options: -DMIN_VERSION_LIBPCI_3_7_0,
+                         -DMIN_VERSION_LIBPCI_3_6_4,
+                         -DMIN_VERSION_LIBPCI_3_6_3,
+                         -DMIN_VERSION_LIBPCI_3_6_0,
+                         -DMIN_VERSION_LIBPCI_3_5_5,
+                         -DMIN_VERSION_LIBPCI_3_5_3,
+                         -DMIN_VERSION_LIBPCI_3_5_2
