@@ -10,3 +10,4 @@ For a higher-level and more Haskell friendly binding (which uses this package) s
 ## Installing
 Make sure the `libpci` C library is installed:
   * *Ubuntu Linux*: `sudo apt install libpci-dev`
+  * *Arch Linux*: `sudo pacman -S pciutils`
