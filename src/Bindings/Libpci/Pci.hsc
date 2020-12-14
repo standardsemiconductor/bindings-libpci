@@ -377,7 +377,10 @@ import Bindings.Libpci.Types
 --
 -- XXX: flags and the result should be unsigned, but we do not want to break the ABI.
 #ccall pci_fill_info , Ptr <struct pci_dev> -> CInt -> IO CInt
+
+#ifdef MIN_VERSION_LIBPCI_3_6_0
 #ccall pci_get_string_property , Ptr <struct pci_dev> -> CUInt -> IO CString
+#endif
 
 #num PCI_FILL_IDENT
 #num PCI_FILL_IRQ
@@ -429,7 +432,10 @@ import Bindings.Libpci.Types
 #num PCI_CAP_EXTENDED
 
 #ccall pci_find_cap , Ptr <struct pci_dev> -> CUInt -> CUInt -> IO (Ptr <struct pci_cap>)
+
+#ifdef MIN_VERSION_LIBPCI_3_6_3
 #ccall pci_find_cap_nr , Ptr <struct pci_dev> -> CUInt -> CUInt -> Ptr CUInt -> IO (Ptr <struct pci_cap>)
+#endif
 {- struct pci_filter {
     int domain, bus, slot, func;
     int vendor, device, device_class;
