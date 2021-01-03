@@ -7,7 +7,12 @@ This package uses [bindings-DSL](http://hackage.haskell.org/package/bindings-DSL
 
 For a higher-level and more Haskell friendly binding (which uses this package) see the [pci](https://github.com/standardsemiconductor/pci) package.
 
-## Installing
+## Prerequisite
 Make sure the `libpci` C library is installed:
   * *Ubuntu Linux*: `sudo apt install libpci-dev`
   * *Arch Linux*: `sudo pacman -S pciutils`
+
+## Build
+```
+cabal build -flibpci-vvv
+```
