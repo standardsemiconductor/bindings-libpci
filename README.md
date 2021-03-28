@@ -1,5 +1,8 @@
-![Haskell CI](https://github.com/standardsemiconductor/bindings-libpci/workflows/Haskell%20CI/badge.svg?branch=main)
 # bindings-libpci
+![Haskell CI](https://github.com/standardsemiconductor/bindings-libpci/workflows/Haskell%20CI/badge.svg?branch=main)
+[![Hackage][hackage-badge]][hackage]
+[![Hackage Dependencies][hackage-deps-badge]][hackage-deps]
+
 Low level bindings to [libpci](https://github.com/pciutils/pciutils)
 See also the pciutils [homepage](https://mj.ucw.cz/sw/pciutils/).
 
@@ -16,3 +19,8 @@ Make sure the `libpci` C library is installed:
 ```
 cabal build -flibpci-vvv
 ```
+
+[hackage]:            <https://hackage.haskell.org/package/bindings-libpci>
+[hackage-badge]:      <https://img.shields.io/hackage/v/bindings-libpci.svg?color=success>
+[hackage-deps-badge]: <https://img.shields.io/hackage-deps/v/bindings-libpci.svg>
+[hackage-deps]:       <https://packdeps.haskellers.com/feed?needle=bindings-libpci>
