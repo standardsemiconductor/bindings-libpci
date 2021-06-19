@@ -1,4 +1,9 @@
 # Revision history for bindings-libpci
+
+## 0.4.0.1 -- 2021-06-19
+* Update README
+* Update base dependency bounds
+
 ## 0.4.0.0 -- 2020-12-14
 * Min-Version bind pci_find_cap_nr() to libpci-3.6.3
 * Min-Version bind pci_get_string_property() to libpci-3.6.0
