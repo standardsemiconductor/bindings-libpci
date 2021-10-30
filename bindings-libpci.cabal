@@ -64,7 +64,7 @@ library
         default-extensions: ForeignFunctionInterface,
                             CPP
         build-depends:
-          base         >= 4.12   && < 4.16,
+          base         >= 4.12   && < 4.17,
           bindings-DSL >= 1.0.24 && < 1.1
         exposed-modules:
           Bindings.Libpci.Pci,
