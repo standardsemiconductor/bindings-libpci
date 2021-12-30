@@ -1,5 +1,8 @@
 # Revision history for bindings-libpci
 
+## 0.4.0.2 -- 2021-12-30
+* Update base dependency bounds
+
 ## 0.4.0.1 -- 2021-06-19
 * Update README
 * Update base dependency bounds
